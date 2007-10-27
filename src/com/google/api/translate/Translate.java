@@ -18,19 +18,6 @@ import java.net.URLEncoder;
  * Makes the Google Translate API available to Java applications.
  */
 public class Translate {
-	public static final String ARABIC = "ar";
-	public static final String CHINESE = "zh";
-	public static final String CHINESE_SIMPLIFIED = "zh-CN";
-	public static final String CHINESE_TRADITIONAL = "zh-TW";
-	public static final String ENGLISH = "en";
-	public static final String FRENCH = "fr";
-	public static final String GERMAN = "de";
-	public static final String ITALIAN = "it";
-	public static final String JAPANESE = "jp";
-	public static final String KOREAN = "ko";
-	public static final String PORTUGESE = "pt";
-	public static final String RUSSIAN = "ru";
-	public static final String SPANISH = "es";
 
 	private static final String URL_STRING = "http://translate.google.com/translate_t?langpair=";
 	private static final String TEXT_VAR = "&text=";
@@ -45,12 +32,8 @@ public class Translate {
 	 */
 	public static String translate(String text, String from, String to) throws MalformedURLException, IOException {
 		StringBuffer url = new StringBuffer();
-		url.append(URL_STRING);
-		url.append(from);
-		url.append('|');
-		url.append(to);
-		url.append(TEXT_VAR);
-		url.append(URLEncoder.encode(text, "UTF-8"));
+		url.append(URL_STRING).append(from).append('|').append(to);
+		url.append(TEXT_VAR).append(URLEncoder.encode(text, "UTF-8"));
 
 		StringBuffer output = new StringBuffer();
 		String line;
