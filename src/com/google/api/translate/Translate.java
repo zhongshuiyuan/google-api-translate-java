@@ -44,7 +44,7 @@ public class Translate {
 		while ((line = rd.readLine()) != null) output.append(line);
 		rd.close();
 
-		String start = output.substring(output.indexOf("<div id=result_box dir=ltr>"));
+		String start = output.substring(output.indexOf("<div id=result_box dir="));
 		return start.substring(27, start.indexOf("</div>"));
 	}
 }
