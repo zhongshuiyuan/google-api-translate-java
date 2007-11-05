@@ -36,9 +36,6 @@ public class Translate {
         url.append(URL_STRING).append(from).append('|').append(to);
         url.append(TEXT_VAR).append(URLEncoder.encode(text, "UTF-8"));
 
-        StringBuilder output = new StringBuilder();
-        String line;
-
         HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
         uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
 
