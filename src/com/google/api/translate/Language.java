@@ -9,7 +9,7 @@ public final class Language {
 	public static final String FRENCH = "fr";
 	public static final String GERMAN = "de";
 	public static final String ITALIAN = "it";
-	public static final String JAPANESE = "jp";
+	public static final String JAPANESE = "ja";
 	public static final String KOREAN = "ko";
 	public static final String PORTUGESE = "pt";
 	public static final String RUSSIAN = "ru";
