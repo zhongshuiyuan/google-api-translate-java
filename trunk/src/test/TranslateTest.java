@@ -24,7 +24,7 @@ public class TranslateTest extends TestCase {
 		assertEquals("مرحبا العالم", Translate.translate("Hello world", Language.ENGLISH, Language.ARABIC));
 		assertEquals("你好世界", Translate.translate("Hello world", Language.ENGLISH, Language.CHINESE));
 		assertEquals("Bonjour le monde", Translate.translate("Hello world", Language.ENGLISH, Language.FRENCH));
-		assertEquals("Hallo Welt", Translate.translate("Hello world", Language.ENGLISH, Language.GERMAN));
+		assertEquals("Hallo welt", Translate.translate("Hello world", Language.ENGLISH, Language.GERMAN));
 		assertEquals("Ciao a tutti", Translate.translate("Hello world", Language.ENGLISH, Language.ITALIAN));
 		assertEquals("こんにちは世界", Translate.translate("Hello world", Language.ENGLISH, Language.JAPANESE));
 		assertEquals("여러분, 안녕하세요", Translate.translate("Hello world", Language.ENGLISH, Language.KOREAN));
