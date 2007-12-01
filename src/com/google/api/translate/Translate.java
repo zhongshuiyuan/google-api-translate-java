@@ -21,6 +21,7 @@ import java.net.URLEncoder;
 public class Translate {
 	
 	private static final String ENCODING = "UTF-8";
+    private static final String INTERMEDIATE_LANGUAGE = Language.ENGLISH;
     private static final String URL_STRING = "http://translate.google.com/translate_t?langpair=";
     private static final String TEXT_VAR = "&text=";
     private static final int RATE_DELAY = 2000;
@@ -73,7 +74,15 @@ public class Translate {
      * @throws MalformedURLException
      * @throws IOException
      */
-    public static String translate(String text, String from, String to) throws MalformedURLException, IOException {
+    public static String translate(String text, String from, String to) throws Exception {
+    	if (Language.isValidLanguagePair(from, to)) {
+    		return retrieveTranslation(text, from, to);
+    	} else {
+    		return retrieveTranslation(retrieveTranslation(text, from, INTERMEDIATE_LANGUAGE), INTERMEDIATE_LANGUAGE, to);
+    	}
+    }
+    
+    private static String retrieveTranslation(String text, String from, String to) throws Exception {
         StringBuilder url = new StringBuilder();
         url.append(URL_STRING).append(from).append('|').append(to);
         url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
@@ -81,7 +90,6 @@ public class Translate {
         HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
         try {
         	uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
-
         	String page = toString(uc.getInputStream());
         
         	int resultBox = page.indexOf("<div id=result_box dir=");        

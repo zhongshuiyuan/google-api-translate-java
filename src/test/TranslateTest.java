@@ -3,12 +3,9 @@
  */
 package test;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
+import junit.framework.TestCase;
 
 import org.junit.Test;
-
-import junit.framework.TestCase;
 
 import com.google.api.translate.Language;
 import com.google.api.translate.Translate;
@@ -19,7 +16,7 @@ import com.google.api.translate.Translate;
  */
 public class TranslateTest extends TestCase {
 	@Test
-	public void testTranslate() throws MalformedURLException, IOException {
+	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
 		assertEquals("مرحبا العالم", Translate.translate("Hello world", Language.ENGLISH, Language.ARABIC));
 		assertEquals("你好世界", Translate.translate("Hello world", Language.ENGLISH, Language.CHINESE));
@@ -31,5 +28,12 @@ public class TranslateTest extends TestCase {
 		assertEquals("Olá mundo", Translate.translate("Hello world", Language.ENGLISH, Language.PORTUGESE));
 		assertEquals("Привет мир", Translate.translate("Hello world", Language.ENGLISH, Language.RUSSIAN));
 		assertEquals("Hola mundo", Translate.translate("Hello world", Language.ENGLISH, Language.SPANISH));
+	}
+	
+	@Test
+	public void testIntermediteTranslate() throws Exception {
+		System.out.println("testIntermediateTranslate");
+		assertEquals("Hola mundo", Translate.translate("Привет мир", Language.RUSSIAN, Language.SPANISH));
+		assertEquals("Ciao a tutti", Translate.translate("Hallo welt", Language.GERMAN, Language.ITALIAN));
 	}
 }
