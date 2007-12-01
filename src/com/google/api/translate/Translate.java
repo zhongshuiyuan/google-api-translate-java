@@ -79,15 +79,19 @@ public class Translate {
         url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
 
         HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
-        uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
+        try {
+        	uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
 
-        String page = toString(uc.getInputStream());
+        	String page = toString(uc.getInputStream());
         
-        int resultBox = page.indexOf("<div id=result_box dir=");
-        
-        if (resultBox < 0) throw new Error("No translation result returned.");
+        	int resultBox = page.indexOf("<div id=result_box dir=");        
+        	if (resultBox < 0) throw new Error("No translation result returned.");
 
-        String start = page.substring(resultBox);
-        return start.substring(27, start.indexOf("</div>"));
+        	String start = page.substring(resultBox);
+        	return start.substring(27, start.indexOf("</div>"));
+        } finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
+        	uc.getInputStream().close();
+        	if (uc.getErrorStream() != null) uc.getErrorStream().close();
+        }
     }
 }
