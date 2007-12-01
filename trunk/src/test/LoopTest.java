@@ -3,12 +3,9 @@
  */
 package test;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
+import junit.framework.TestCase;
 
 import org.junit.Test;
-
-import junit.framework.TestCase;
 
 import com.google.api.translate.Language;
 import com.google.api.translate.Translate;
@@ -19,7 +16,7 @@ import com.google.api.translate.Translate;
  */
 public class LoopTest extends TestCase {
 	@Test
-	public void testTranslate() throws MalformedURLException, IOException {
+	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
 		for (int i = 0; i<30; i++) {
 			System.out.println("Loop: " +i);
