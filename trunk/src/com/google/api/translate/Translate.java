@@ -64,24 +64,34 @@ public class Translate {
     	Translate.rateControl = rateControl;
     }
 
-    private static String toString(InputStream inputStream) throws IOException {
-    	while (rateControl && (lastQueryTime+RATE_DELAY > System.currentTimeMillis())) {
-    		try {
-				Thread.sleep(lastQueryTime+RATE_DELAY-System.currentTimeMillis());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+    /**
+     * Reads an InputStream and returns its contents as a String. Also effects rate control.
+     * @param inputStream The InputStream to read from.
+     * @return The contents of the InputStream as a String.
+     * @throws Exception
+     */
+    private static String toString(InputStream inputStream) throws Exception {
+    	StringBuilder outputBuilder = new StringBuilder();
+    	try {
+    		while (rateControl && (lastQueryTime+RATE_DELAY > System.currentTimeMillis())) {
+    			try {
+    				Thread.sleep(lastQueryTime+RATE_DELAY-System.currentTimeMillis());
+    			} catch (InterruptedException e) {
+    				System.out.println("[google-api-translate-java] Interrupted sleep.");
+    			}
+    		}
+    		String string;
+    		if (inputStream != null) {
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
+    			while (null != (string = reader.readLine())) {
+    				outputBuilder.append(string).append('\n');
+    			}
+    		}
+    		if (rateControl) lastQueryTime = System.currentTimeMillis();
+    	} catch (Exception ex) {
+    		throw new Exception("[google-api-translate-java] Error reading translation stream.", ex);
     	}
-        String string;
-        StringBuilder outputBuilder = new StringBuilder();
-        if (inputStream != null) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
-            while (null != (string = reader.readLine())) {
-                outputBuilder.append(string).append('\n');
-            }
-        }
-        if (rateControl) lastQueryTime = System.currentTimeMillis();
-        return outputBuilder.toString();
+    	return outputBuilder.toString();
     }
 
     /**
@@ -111,23 +121,27 @@ public class Translate {
      * @throws Exception
      */
     private static String retrieveTranslation(String text, String from, String to) throws Exception {
-        StringBuilder url = new StringBuilder();
-        url.append(URL_STRING).append(from).append('|').append(to);
-        url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
+    	try {
+    		StringBuilder url = new StringBuilder();
+    		url.append(URL_STRING).append(from).append('|').append(to);
+    		url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
 
-        HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
-        try {
-        	uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
-        	String page = toString(uc.getInputStream());
-        
-        	int resultBox = page.indexOf("<div id=result_box dir=");        
-        	if (resultBox < 0) throw new Error("No translation result returned.");
+    		HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
+    		try {
+    			uc.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)");
+    			String page = toString(uc.getInputStream());
 
-        	String start = page.substring(resultBox);
-        	return start.substring(27, start.indexOf("</div>"));
-        } finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
-        	uc.getInputStream().close();
-        	if (uc.getErrorStream() != null) uc.getErrorStream().close();
-        }
+    			int resultBox = page.indexOf("<div id=result_box dir=");        
+    			if (resultBox < 0) throw new Error("No translation result returned.");
+
+    			String start = page.substring(resultBox);
+    			return start.substring(27, start.indexOf("</div>"));
+    		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
+    			uc.getInputStream().close();
+    			if (uc.getErrorStream() != null) uc.getErrorStream().close();
+    		}
+    	} catch (Exception ex) {
+    		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);
+    	}
     }
 }
