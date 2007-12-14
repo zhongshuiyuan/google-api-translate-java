@@ -1,7 +1,21 @@
 /**
  * Translate.java
  *
- * Makes the Google Translate API available to Java applications.
+ * Copyright (C) 2007,  Richard Midwinter
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package com.google.api.translate;
 
@@ -15,8 +29,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * @author rich
  * Makes the Google Translate API available to Java applications.
+ * 
+ * @author Richard Midwinter
+ * @author Emeric Vernat
+ * @author Juan B Cabral
  */
 public class Translate {
 	
@@ -31,6 +48,7 @@ public class Translate {
     
     /**
      * Are we throttling queries to prevent being blocked? Defaults to true.
+     * 
      * @return Returns true if throttling query frequency.
      */
     public static boolean isUsingRateControl() {
@@ -39,6 +57,7 @@ public class Translate {
     
     /**
      * Allows turning off rate control
+     * 
      * @param rateControl Turns on rate control if true, off if false.
      */
     public static void setUsingRateControl(boolean rateControl) {
@@ -67,6 +86,7 @@ public class Translate {
 
     /**
      * Translates text from a given language to another given language using Google Translate
+     * 
      * @param text The String to translate.
      * @param from The language code to translate from.
      * @param to The language code to translate to.
@@ -81,7 +101,15 @@ public class Translate {
     		return retrieveTranslation(retrieveTranslation(text, from, INTERMEDIATE_LANGUAGE), INTERMEDIATE_LANGUAGE, to);
     	}
     }
-    
+    /**
+     * Forms an HTTP request and parses the response for a translation.
+     * 
+     * @param text The String to translate.
+     * @param from The language code to translate from.
+     * @param to The language code to translate to.
+     * @return The translated String.
+     * @throws Exception
+     */
     private static String retrieveTranslation(String text, String from, String to) throws Exception {
         StringBuilder url = new StringBuilder();
         url.append(URL_STRING).append(from).append('|').append(to);
