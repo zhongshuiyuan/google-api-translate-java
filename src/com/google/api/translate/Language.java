@@ -1,7 +1,32 @@
+/**
+ * Language.java
+ *
+ * Copyright (C) 2007,  Richard Midwinter
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
 package com.google.api.translate;
 
 import java.util.Arrays;
 import java.util.List;
+
+/**
+ * Defines language information for the Google Translate API.
+ * 
+ * @author Richard Midwinter
+ */
 
 public final class Language {
 	public static final String ARABIC = "ar";
@@ -69,10 +94,23 @@ public final class Language {
 			SPANISH +'|' +ENGLISH
 	});
 	
+	/**
+	 * Checks a given language is available to use with Google Translate.
+	 * 
+	 * @param language The language code to check for.
+	 * @return true if this language is available to use with Google Translate, false otherwise.
+	 */
 	protected static boolean isValidLanguage(String language) {
 		return validLanguages.contains(language);
 	}
 	
+	/**
+	 * Checks the languages to translate to and from match with a supported Google Translate pairing.
+	 * 
+	 * @param from The language code to translate from.
+	 * @param to The language code to translate to.
+	 * @return true if the language pairing is supported, false otherwise.
+	 */
 	protected static boolean isValidLanguagePair(String from, String to) {
 		return validLanguagePairs.contains(from +'|' +to);
 	}
