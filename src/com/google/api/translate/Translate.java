@@ -20,11 +20,9 @@
 package com.google.api.translate;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -37,7 +35,7 @@ import java.net.URLEncoder;
  */
 public class Translate {
 	
-	private static final String ENCODING = "UTF-8";
+    private static final String ENCODING = "UTF-8";
     private static final String INTERMEDIATE_LANGUAGE = Language.ENGLISH;
     private static final String URL_STRING = "http://translate.google.com/translate_t?langpair=";
     private static final String TEXT_VAR = "&text=";
@@ -135,7 +133,7 @@ public class Translate {
     			if (resultBox < 0) throw new Error("No translation result returned.");
 
     			String start = page.substring(resultBox);
-    			return start.substring(27, start.indexOf("</div>"));
+    			return start.substring(start.indexOf('>')+1, start.indexOf("</div>"));
     		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
     			uc.getInputStream().close();
     			if (uc.getErrorStream() != null) uc.getErrorStream().close();
