@@ -34,6 +34,6 @@ public class TranslateTest extends TestCase {
 	public void testIntermediteTranslate() throws Exception {
 		System.out.println("testIntermediateTranslate");
 		assertEquals("Hola Mundo", Translate.translate("Привет мир", Language.RUSSIAN, Language.SPANISH));
-		assertEquals("Ciao a tutti", Translate.translate("Hallo welt", Language.GERMAN, Language.ITALIAN));
+		assertEquals("Ciao mondo", Translate.translate("Hallo welt", Language.GERMAN, Language.ITALIAN));
 	}
 }
