@@ -203,3 +203,5 @@ public class TranslatorFrame extends javax.swing.JFrame {
 = Details =
 
 This code took barely two minutes to knock up in Netbeans 6 and demonstrates the API usage in a realistic environment. Although it's a simple example, it's pratical enough to realistically use.
+
+Requires JDK 1.6.
