@@ -106,7 +106,9 @@ public class Translate {
     	if (Language.isValidLanguagePair(from, to)) {
     		return retrieveTranslation(text, from, to);
     	} else {
-    		return retrieveTranslation(retrieveTranslation(text, from, INTERMEDIATE_LANGUAGE), INTERMEDIATE_LANGUAGE, to);
+    		String intermediary = retrieveTranslation(text, from, INTERMEDIATE_LANGUAGE);
+    		String result = retrieveTranslation(intermediary, INTERMEDIATE_LANGUAGE, to);
+    		return (text.equals(intermediary) || intermediary.equals(result)) ? text : result;
     	}
     }
     /**
