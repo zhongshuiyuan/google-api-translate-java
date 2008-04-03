@@ -45,7 +45,7 @@ public final class Language {
 	public static final String RUSSIAN = "ru";
 	public static final String SPANISH = "es";
 	
-	private static final List<String> validLanguages = Arrays.asList(new String[] {
+	public static final List<String> validLanguages = Arrays.asList(new String[] {
 			ARABIC,
 			CHINESE,
 			CHINESE_SIMPLIFIED,
@@ -61,7 +61,7 @@ public final class Language {
 			SPANISH
 			});
 	
-	private static final List<String> validLanguagePairs = Arrays.asList(new String[] {
+	public static final List<String> validLanguagePairs = Arrays.asList(new String[] {
 			ARABIC +'|' +ENGLISH,
 			CHINESE +'|' +ENGLISH,
 			CHINESE_SIMPLIFIED +'|' +CHINESE_TRADITIONAL,
@@ -100,7 +100,7 @@ public final class Language {
 	 * @param language The language code to check for.
 	 * @return true if this language is available to use with Google Translate, false otherwise.
 	 */
-	protected static boolean isValidLanguage(String language) {
+	public static boolean isValidLanguage(String language) {
 		return validLanguages.contains(language);
 	}
 	
@@ -111,7 +111,7 @@ public final class Language {
 	 * @param to The language code to translate to.
 	 * @return true if the language pairing is supported, false otherwise.
 	 */
-	protected static boolean isValidLanguagePair(String from, String to) {
+	public static boolean isValidLanguagePair(String from, String to) {
 		return validLanguagePairs.contains(from +'|' +to);
 	}
 }
