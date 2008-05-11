@@ -11,7 +11,7 @@ import com.google.api.translate.Language;
 import com.google.api.translate.Translate;
 
 /**
- * @author rich
+ * @author Richard Midwinter
  *
  */
 public class TranslateTest extends TestCase {

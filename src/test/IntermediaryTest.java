@@ -12,7 +12,7 @@ import com.google.api.translate.Translate;
 
 
 /**
- * @author rich
+ * @author Richard Midwinter
  *
  */
 public class IntermediaryTest {
