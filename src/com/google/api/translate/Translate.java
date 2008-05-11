@@ -45,28 +45,6 @@ public class Translate {
     private static final String TEXT_VAR = "&q=";
 
     /**
-     * Reads an InputStream and returns its contents as a String. Also effects rate control.
-     * @param inputStream The InputStream to read from.
-     * @return The contents of the InputStream as a String.
-     * @throws Exception
-     */
-    private static String toString(InputStream inputStream) throws Exception {
-    	StringBuilder outputBuilder = new StringBuilder();
-    	try {
-    		String string;
-    		if (inputStream != null) {
-    			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
-    			while (null != (string = reader.readLine())) {
-    				outputBuilder.append(string).append('\n');
-    			}
-    		}
-    	} catch (Exception ex) {
-    		throw new Exception("[google-api-translate-java] Error reading translation stream.", ex);
-    	}
-    	return outputBuilder.toString();
-    }
-
-    /**
      * Translates text from a given language to another given language using Google Translate
      * 
      * @param text The String to translate.
@@ -113,5 +91,27 @@ public class Translate {
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);
     	}
+    }
+
+    /**
+     * Reads an InputStream and returns its contents as a String. Also effects rate control.
+     * @param inputStream The InputStream to read from.
+     * @return The contents of the InputStream as a String.
+     * @throws Exception
+     */
+    private static String toString(InputStream inputStream) throws Exception {
+    	StringBuilder outputBuilder = new StringBuilder();
+    	try {
+    		String string;
+    		if (inputStream != null) {
+    			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, ENCODING));
+    			while (null != (string = reader.readLine())) {
+    				outputBuilder.append(string).append('\n');
+    			}
+    		}
+    	} catch (Exception ex) {
+    		throw new Exception("[google-api-translate-java] Error reading translation stream.", ex);
+    	}
+    	return outputBuilder.toString();
     }
 }
