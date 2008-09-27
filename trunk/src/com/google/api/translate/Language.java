@@ -30,70 +30,49 @@ import java.util.List;
 
 public final class Language {
 	public static final String ARABIC = "ar";
+	public static final String BULGARIAN = "bg";
+	public static final String CATALAN = "ca";
 	public static final String CHINESE = "zh";
 	public static final String CHINESE_SIMPLIFIED = "zh-CN";
 	public static final String CHINESE_TRADITIONAL = "zh-TW";
+	public static final String CROATIAN = "cr";
+	public static final String CZECH = "cs";
+	public static final String DANISH = "da";
 	public static final String DUTCH = "nl";
 	public static final String ENGLISH = "en";
+	public static final String FILIPINO = "tl";
+	public static final String FINNISH = "fi";
 	public static final String FRENCH = "fr";
 	public static final String GERMAN = "de";
 	public static final String GREEK = "el";
+	public static final String HEBREW = "iw";
+	public static final String HINDI = "hi";
+	public static final String INDONESIAN = "id";
 	public static final String ITALIAN = "it";
 	public static final String JAPANESE = "ja";
 	public static final String KOREAN = "ko";
+	public static final String LATVIAN = "lv";
+	public static final String LITHUANIAN = "lt";
+	public static final String NORWEGIAN = "no";
+	public static final String POLISH = "pl";
 	public static final String PORTUGESE = "pt";
+	public static final String ROMANIAN = "ro";
 	public static final String RUSSIAN = "ru";
+	public static final String SERBIAN = "sr";
+	public static final String SLOVAK = "sk";
+	public static final String SLOVENIAN = "sl";
 	public static final String SPANISH = "es";
+	public static final String SWEDISH = "sv";
+	public static final String UKRANIAN = "uk";
+	public static final String VIETNAMESE = "vi";
 	
 	public static final List<String> validLanguages = Arrays.asList(new String[] {
-			ARABIC,
-			CHINESE,
-			CHINESE_SIMPLIFIED,
-			CHINESE_TRADITIONAL,
-			DUTCH,
-			ENGLISH,
-			FRENCH,
-			GERMAN,
-			GREEK,
-			ITALIAN,
-			JAPANESE,
-			KOREAN,
-			PORTUGESE,
-			RUSSIAN,
-			SPANISH
-			});
-	
-	public static final List<String> validLanguagePairs = Arrays.asList(new String[] {
-			ARABIC +'|' +ENGLISH,
-			CHINESE +'|' +ENGLISH,
-			CHINESE_SIMPLIFIED +'|' +CHINESE_TRADITIONAL,
-			CHINESE_TRADITIONAL +'|' +CHINESE_SIMPLIFIED,
-			DUTCH +'|' +ENGLISH,
-			ENGLISH +'|' +ARABIC,
-			ENGLISH +'|' +CHINESE,
-			ENGLISH +'|' +CHINESE_SIMPLIFIED,
-			ENGLISH +'|' +CHINESE_TRADITIONAL,
-			ENGLISH +'|' +DUTCH,
-			ENGLISH +'|' +FRENCH,
-			ENGLISH +'|' +GERMAN,
-			ENGLISH +'|' +GREEK,
-			ENGLISH +'|' +ITALIAN,
-			ENGLISH +'|' +JAPANESE,
-			ENGLISH +'|' +KOREAN,
-			ENGLISH +'|' +PORTUGESE,
-			ENGLISH +'|' +RUSSIAN,
-			ENGLISH +'|' +SPANISH,
-			FRENCH +'|' +ENGLISH,
-			FRENCH +'|' +GERMAN,
-			GERMAN +'|' +ENGLISH,
-			GERMAN +'|' +FRENCH,
-			GREEK +'|' +ENGLISH,
-			ITALIAN +'|' +ENGLISH,
-			JAPANESE +'|' +ENGLISH,
-			KOREAN +'|' +ENGLISH,
-			PORTUGESE +'|' +ENGLISH,
-			RUSSIAN +'|' +ENGLISH,
-			SPANISH +'|' +ENGLISH
+			ARABIC,	BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
+			CHINESE_TRADITIONAL, CROATIAN, CZECH, DANISH, DUTCH,
+			ENGLISH, FILIPINO, FRENCH, GERMAN, GREEK, HEBREW,
+			ITALIAN, JAPANESE, KOREAN, LATVIAN, LITHUANIAN, NORWEGIAN,
+			POLISH, PORTUGESE, ROMANIAN, RUSSIAN, SERBIAN, SLOVAK,
+			SLOVENIAN, SPANISH, SWEDISH, UKRANIAN, VIETNAMESE
 	});
 	
 	/**
@@ -104,16 +83,5 @@ public final class Language {
 	 */
 	public static boolean isValidLanguage(String language) {
 		return validLanguages.contains(language);
-	}
-	
-	/**
-	 * Checks the languages to translate to and from match with a supported Google Translate pairing.
-	 * 
-	 * @param from The language code to translate from.
-	 * @param to The language code to translate to.
-	 * @return true if the language pairing is supported, false otherwise.
-	 */
-	public static boolean isValidLanguagePair(String from, String to) {
-		return validLanguagePairs.contains(from +'|' +to);
 	}
 }

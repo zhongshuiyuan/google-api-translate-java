@@ -40,7 +40,6 @@ import org.json.JSONObject;
 public class Translate {
 	
     private static final String ENCODING = "UTF-8";
-    private static final String INTERMEDIATE_LANGUAGE = Language.ENGLISH;
     private static final String URL_STRING = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=";
     private static final String TEXT_VAR = "&q=";
 
@@ -55,13 +54,7 @@ public class Translate {
      * @throws IOException
      */
     public static String translate(String text, String from, String to) throws Exception {
-    	if (Language.isValidLanguagePair(from, to)) {
-    		return retrieveTranslation(text, from, to);
-    	} else {
-    		String intermediary = retrieveTranslation(text, from, INTERMEDIATE_LANGUAGE);
-    		String result = retrieveTranslation(intermediary, INTERMEDIATE_LANGUAGE, to);
-    		return (text.equals(intermediary) || intermediary.equals(result)) ? text : result;
-    	}
+    	return retrieveTranslation(text, from, to);
     }
     /**
      * Forms an HTTP request and parses the response for a translation.
@@ -77,7 +70,7 @@ public class Translate {
     		StringBuilder url = new StringBuilder();
     		url.append(URL_STRING).append(from).append("%7C").append(to);
     		url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
-
+    		
     		HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
     		try {
     			String result = toString(uc.getInputStream());
