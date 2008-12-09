@@ -35,7 +35,7 @@ public final class Language {
 	public static final String CHINESE = "zh";
 	public static final String CHINESE_SIMPLIFIED = "zh-CN";
 	public static final String CHINESE_TRADITIONAL = "zh-TW";
-	public static final String CROATIAN = "cr";
+	public static final String CROATIAN = "hr";
 	public static final String CZECH = "cs";
 	public static final String DANISH = "da";
 	public static final String DUTCH = "nl";
@@ -69,7 +69,7 @@ public final class Language {
 	public static final List<String> validLanguages = Arrays.asList(new String[] {
 			ARABIC,	BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
 			CHINESE_TRADITIONAL, CROATIAN, CZECH, DANISH, DUTCH,
-			ENGLISH, FILIPINO, FRENCH, GERMAN, GREEK, HEBREW,
+			ENGLISH, FILIPINO, FINNISH, FRENCH, GERMAN, GREEK, HEBREW,
 			ITALIAN, JAPANESE, KOREAN, LATVIAN, LITHUANIAN, NORWEGIAN,
 			POLISH, PORTUGESE, ROMANIAN, RUSSIAN, SERBIAN, SLOVAK,
 			SLOVENIAN, SPANISH, SWEDISH, UKRANIAN, VIETNAMESE
