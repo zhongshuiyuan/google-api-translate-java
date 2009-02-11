@@ -30,6 +30,8 @@ import java.net.URLEncoder;
 
 import org.json.JSONObject;
 
+import com.tecnick.htmlutils.htmlentities.HTMLEntities;
+
 /**
  * Makes the Google Translate API available to Java applications.
  * 
@@ -75,8 +77,9 @@ public class Translate {
     		try {
     			String result = toString(uc.getInputStream());
     			
-    			JSONObject json = new JSONObject(result);
-    			return ((JSONObject)json.get("responseData")).getString("translatedText");
+    			final JSONObject json = new JSONObject(result);
+    			final String translatedText = ((JSONObject)json.get("responseData")).getString("translatedText");
+    			return HTMLEntities.unhtmlentities(translatedText);
     		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
     			uc.getInputStream().close();
     			if (uc.getErrorStream() != null) uc.getErrorStream().close();

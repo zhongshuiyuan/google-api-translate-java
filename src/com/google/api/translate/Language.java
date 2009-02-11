@@ -43,16 +43,19 @@ public final class Language {
 	public static final String FILIPINO = "tl";
 	public static final String FINNISH = "fi";
 	public static final String FRENCH = "fr";
+	public static final String GALACIAN = "gl";
 	public static final String GERMAN = "de";
 	public static final String GREEK = "el";
 	public static final String HEBREW = "iw";
 	public static final String HINDI = "hi";
+	public static final String HUNGARIAN = "hu";
 	public static final String INDONESIAN = "id";
 	public static final String ITALIAN = "it";
 	public static final String JAPANESE = "ja";
 	public static final String KOREAN = "ko";
 	public static final String LATVIAN = "lv";
 	public static final String LITHUANIAN = "lt";
+	public static final String MALTESE = "mt";
 	public static final String NORWEGIAN = "no";
 	public static final String POLISH = "pl";
 	public static final String PORTUGESE = "pt";
@@ -63,16 +66,19 @@ public final class Language {
 	public static final String SLOVENIAN = "sl";
 	public static final String SPANISH = "es";
 	public static final String SWEDISH = "sv";
+	public static final String THAI = "th";
+	public static final String TURKISH = "tr";
 	public static final String UKRANIAN = "uk";
 	public static final String VIETNAMESE = "vi";
 	
 	public static final List<String> validLanguages = Arrays.asList(new String[] {
 			ARABIC,	BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
 			CHINESE_TRADITIONAL, CROATIAN, CZECH, DANISH, DUTCH,
-			ENGLISH, FILIPINO, FINNISH, FRENCH, GERMAN, GREEK, HEBREW,
-			ITALIAN, JAPANESE, KOREAN, LATVIAN, LITHUANIAN, NORWEGIAN,
+			ENGLISH, FILIPINO, FINNISH, FRENCH, GALACIAN, GERMAN,
+			GREEK, HEBREW, HINDI, HUNGARIAN, INDONESIAN, ITALIAN,
+			JAPANESE, KOREAN, LATVIAN, LITHUANIAN, MALTESE, NORWEGIAN,
 			POLISH, PORTUGESE, ROMANIAN, RUSSIAN, SERBIAN, SLOVAK,
-			SLOVENIAN, SPANISH, SWEDISH, UKRANIAN, VIETNAMESE
+			SLOVENIAN, SPANISH, SWEDISH, THAI, TURKISH, UKRANIAN, VIETNAMESE
 	});
 	
 	/**
