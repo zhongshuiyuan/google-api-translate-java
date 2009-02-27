@@ -68,6 +68,10 @@ public class Translate {
      * @throws Exception
      */
     private static String retrieveTranslation(String text, String from, String to) throws Exception {
+    	if (!Language.isValidLanguage(from) || !Language.isValidLanguage(to) || Language.AUTO_DETECT.equals(to)) {
+    		throw new IllegalArgumentException("You must use a valid language code to translate to and from.");
+    	}
+    	
     	try {
     		StringBuilder url = new StringBuilder();
     		url.append(URL_STRING).append(from).append("%7C").append(to);

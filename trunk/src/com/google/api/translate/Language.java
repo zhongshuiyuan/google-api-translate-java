@@ -26,9 +26,11 @@ import java.util.List;
  * Defines language information for the Google Translate API.
  * 
  * @author Richard Midwinter
+ * @author alosii
  */
 
 public final class Language {
+	public static final String AUTO_DETECT = "";
 	public static final String ARABIC = "ar";
 	public static final String BULGARIAN = "bg";
 	public static final String CATALAN = "ca";
@@ -72,7 +74,7 @@ public final class Language {
 	public static final String VIETNAMESE = "vi";
 	
 	public static final List<String> validLanguages = Arrays.asList(new String[] {
-			ARABIC,	BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
+			AUTO_DETECT, ARABIC, BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
 			CHINESE_TRADITIONAL, CROATIAN, CZECH, DANISH, DUTCH,
 			ENGLISH, FILIPINO, FINNISH, FRENCH, GALACIAN, GERMAN,
 			GREEK, HEBREW, HINDI, HUNGARIAN, INDONESIAN, ITALIAN,
