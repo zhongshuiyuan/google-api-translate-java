@@ -42,12 +42,20 @@ public final class Translate {
     private static final String ENCODING = "UTF-8";
     private static final String URL_STRING = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=";
     private static final String TEXT_VAR = "&q=";
+    private static String referrer = "http://code.google.com/p/google-api-translate-java/";
     
     /**
      * Translate. Private constructor as we should not need to initialize it.
      */
     private Translate() {
-    	
+    }
+    
+    /**
+     * Sets the HTTP Referrer.
+     * @param pReferrer The HTTP referrer parameter.
+     */
+    public static void setHttpReferrer(final String pReferrer) {
+    	referrer = pReferrer;
     }
 
     /**
@@ -79,6 +87,7 @@ public final class Translate {
     		url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
     		
     		final HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
+    		uc.setRequestProperty("referer", referrer);
     		try {
     			String result = toString(uc.getInputStream());
     			
