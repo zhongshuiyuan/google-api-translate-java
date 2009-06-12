@@ -19,77 +19,76 @@
  */
 package com.google.api.translate;
 
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Defines language information for the Google Translate API.
- * 
+ *
  * @author Richard Midwinter
  * @author alosii
  */
-
-public final class Language {
-	public static final String AUTO_DETECT = "";
-	public static final String ARABIC = "ar";
-	public static final String BULGARIAN = "bg";
-	public static final String CATALAN = "ca";
-	public static final String CHINESE = "zh";
-	public static final String CHINESE_SIMPLIFIED = "zh-CN";
-	public static final String CHINESE_TRADITIONAL = "zh-TW";
-	public static final String CROATIAN = "hr";
-	public static final String CZECH = "cs";
-	public static final String DANISH = "da";
-	public static final String DUTCH = "nl";
-	public static final String ENGLISH = "en";
-	public static final String FILIPINO = "tl";
-	public static final String FINNISH = "fi";
-	public static final String FRENCH = "fr";
-	public static final String GALACIAN = "gl";
-	public static final String GERMAN = "de";
-	public static final String GREEK = "el";
-	public static final String HEBREW = "iw";
-	public static final String HINDI = "hi";
-	public static final String HUNGARIAN = "hu";
-	public static final String INDONESIAN = "id";
-	public static final String ITALIAN = "it";
-	public static final String JAPANESE = "ja";
-	public static final String KOREAN = "ko";
-	public static final String LATVIAN = "lv";
-	public static final String LITHUANIAN = "lt";
-	public static final String MALTESE = "mt";
-	public static final String NORWEGIAN = "no";
-	public static final String POLISH = "pl";
-	public static final String PORTUGESE = "pt";
-	public static final String ROMANIAN = "ro";
-	public static final String RUSSIAN = "ru";
-	public static final String SERBIAN = "sr";
-	public static final String SLOVAK = "sk";
-	public static final String SLOVENIAN = "sl";
-	public static final String SPANISH = "es";
-	public static final String SWEDISH = "sv";
-	public static final String THAI = "th";
-	public static final String TURKISH = "tr";
-	public static final String UKRANIAN = "uk";
-	public static final String VIETNAMESE = "vi";
-	
-	public static final List<String> validLanguages = Arrays.asList(new String[] {
-			AUTO_DETECT, ARABIC, BULGARIAN, CATALAN, CHINESE, CHINESE_SIMPLIFIED,
-			CHINESE_TRADITIONAL, CROATIAN, CZECH, DANISH, DUTCH,
-			ENGLISH, FILIPINO, FINNISH, FRENCH, GALACIAN, GERMAN,
-			GREEK, HEBREW, HINDI, HUNGARIAN, INDONESIAN, ITALIAN,
-			JAPANESE, KOREAN, LATVIAN, LITHUANIAN, MALTESE, NORWEGIAN,
-			POLISH, PORTUGESE, ROMANIAN, RUSSIAN, SERBIAN, SLOVAK,
-			SLOVENIAN, SPANISH, SWEDISH, THAI, TURKISH, UKRANIAN, VIETNAMESE
-	});
+public enum Language {
+	AUTO_DETECT(""),
+	ARABIC("ar"),
+	BULGARIAN("bg"),
+	CATALAN("ca"),
+	CHINESE("zh"),
+	CHINESE_SIMPLIFIED("zh-CN"),
+	CHINESE_TRADITIONAL("zh-TW"),
+	CROATIAN("hr"),
+	CZECH("cs"),
+	DANISH("da"),
+	DUTCH("nl"),
+	ENGLISH("en"),
+	FILIPINO("tl"),
+	FINNISH("fi"),
+	FRENCH("fr"),
+	GALACIAN("gl"),
+	GERMAN("de"),
+	GREEK("el"),
+	HEBREW("iw"),
+	HINDI("hi"),
+	HUNGARIAN("hu"),
+	INDONESIAN("id"),
+	ITALIAN("it"),
+	JAPANESE("ja"),
+	KOREAN("ko"),
+	LATVIAN("lv"),
+	LITHUANIAN("lt"),
+	MALTESE("mt"),
+	NORWEGIAN("no"),
+	POLISH("pl"),
+	PORTUGESE("pt"),
+	ROMANIAN("ro"),
+	RUSSIAN("ru"),
+	SERBIAN("sr"),
+	SLOVAK("sk"),
+	SLOVENIAN("sl"),
+	SPANISH("es"),
+	SWEDISH("sv"),
+	THAI("th"),
+	TURKISH("tr"),
+	UKRANIAN("uk"),
+	VIETNAMESE("vi");
 	
 	/**
-	 * Checks a given language is available to use with Google Translate.
-	 * 
-	 * @param language The language code to check for.
-	 * @return true if this language is available to use with Google Translate, false otherwise.
+	 * Google's String representation of this language.
 	 */
-	public static boolean isValidLanguage(String language) {
-		return validLanguages.contains(language);
+	private final String language;
+	
+	/**
+	 * Enum constructor.
+	 * @param pLanguage The language identifier.
+	 */
+	private Language(final String pLanguage) {
+		language = pLanguage;
+	}
+	
+	/**
+	 * Returns the String representation of this language.
+	 * @return The String representation of this language.
+	 */
+	@Override
+	public String toString() {
+		return language;
 	}
 }

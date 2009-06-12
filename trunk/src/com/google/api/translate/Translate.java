@@ -20,11 +20,9 @@
 package com.google.api.translate;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -39,23 +37,29 @@ import com.tecnick.htmlutils.htmlentities.HTMLEntities;
  * @author Emeric Vernat
  * @author Juan B Cabral
  */
-public class Translate {
+public final class Translate {
 	
     private static final String ENCODING = "UTF-8";
     private static final String URL_STRING = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=";
     private static final String TEXT_VAR = "&q=";
+    
+    /**
+     * Translate. Private constructor as we should not need to initialize it.
+     */
+    private Translate() {
+    	
+    }
 
     /**
-     * Translates text from a given language to another given language using Google Translate
+     * Translates text from a given language to another given language using Google Translate.
      * 
      * @param text The String to translate.
      * @param from The language code to translate from.
      * @param to The language code to translate to.
      * @return The translated String.
-     * @throws MalformedURLException
-     * @throws IOException
+     * @throws Exception on error.
      */
-    public static String translate(String text, String from, String to) throws Exception {
+    public static String translate(final String text, final Language from, final Language to) throws Exception {
     	return retrieveTranslation(text, from, to);
     }
     /**
@@ -65,28 +69,27 @@ public class Translate {
      * @param from The language code to translate from.
      * @param to The language code to translate to.
      * @return The translated String.
-     * @throws Exception
+     * @throws Exception on error.
      */
-    private static String retrieveTranslation(String text, String from, String to) throws Exception {
-    	if (!Language.isValidLanguage(from) || !Language.isValidLanguage(to) || Language.AUTO_DETECT.equals(to)) {
-    		throw new IllegalArgumentException("You must use a valid language code to translate to and from.");
-    	}
-    	
+    private static String retrieveTranslation(final String text, final Language from, final Language to)
+    		throws Exception {
     	try {
-    		StringBuilder url = new StringBuilder();
+    		final StringBuilder url = new StringBuilder();
     		url.append(URL_STRING).append(from).append("%7C").append(to);
     		url.append(TEXT_VAR).append(URLEncoder.encode(text, ENCODING));
     		
-    		HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
+    		final HttpURLConnection uc = (HttpURLConnection) new URL(url.toString()).openConnection();
     		try {
     			String result = toString(uc.getInputStream());
     			
     			final JSONObject json = new JSONObject(result);
-    			final String translatedText = ((JSONObject)json.get("responseData")).getString("translatedText");
+    			final String translatedText = ((JSONObject) json.get("responseData")).getString("translatedText");
     			return HTMLEntities.unhtmlentities(translatedText);
     		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
     			uc.getInputStream().close();
-    			if (uc.getErrorStream() != null) uc.getErrorStream().close();
+    			if (uc.getErrorStream() != null) {
+    				uc.getErrorStream().close();
+    			}
     		}
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);
@@ -94,12 +97,14 @@ public class Translate {
     }
 
     /**
-     * Reads an InputStream and returns its contents as a String. Also effects rate control.
+     * Reads an InputStream and returns its contents as a String.
+     * Also effects rate control.
      * @param inputStream The InputStream to read from.
      * @return The contents of the InputStream as a String.
-     * @throws Exception
+     * @throws Exception on error.
      */
-    private static String toString(InputStream inputStream) throws Exception {
+    private static String toString(final InputStream inputStream)
+    		throws Exception {
     	StringBuilder outputBuilder = new StringBuilder();
     	try {
     		String string;
