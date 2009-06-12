@@ -25,6 +25,7 @@ package com.google.api.translate;
  *
  * @author Richard Midwinter
  * @author alosii
+ * @author bjkuczynski
  */
 public enum Language {
 	AUTO_DETECT(""),
