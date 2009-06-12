@@ -29,6 +29,7 @@ package com.google.api.translate;
  */
 public enum Language {
 	AUTO_DETECT(""),
+	ALBANIAN("sq"),
 	ARABIC("ar"),
 	BULGARIAN("bg"),
 	CATALAN("ca"),
@@ -40,6 +41,7 @@ public enum Language {
 	DANISH("da"),
 	DUTCH("nl"),
 	ENGLISH("en"),
+	ESTONIAN("et"),
 	FILIPINO("tl"),
 	FINNISH("fi"),
 	FRENCH("fr"),
