@@ -60,7 +60,7 @@ public enum Language {
 	MALTESE("mt"),
 	NORWEGIAN("no"),
 	POLISH("pl"),
-	PORTUGESE("pt"),
+	PORTUGUESE("pt"),
 	ROMANIAN("ro"),
 	RUSSIAN("ru"),
 	SERBIAN("sr"),
