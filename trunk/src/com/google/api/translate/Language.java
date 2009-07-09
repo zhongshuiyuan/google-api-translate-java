@@ -59,6 +59,7 @@ public enum Language {
 	LITHUANIAN("lt"),
 	MALTESE("mt"),
 	NORWEGIAN("no"),
+	PERSIAN("fa"),
 	POLISH("pl"),
 	PORTUGUESE("pt"),
 	ROMANIAN("ro"),
