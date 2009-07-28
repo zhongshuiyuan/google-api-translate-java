@@ -2,6 +2,8 @@
 
 = Translator =
 
+This has been updated (July 09) to reflect the usage of the Language enum, where Strings were used previously.
+
 {{{
 /*
  * TranslatorFrame.java
@@ -9,21 +11,29 @@
  * Created on 03 February 2008, 19:47
  */
 
-package org.htu.translator;
+package com.google.api.translate;
 
-import com.google.api.translate.Language;
-import com.google.api.translate.Translate;
+/*
+ * TranslatorFrame.java
+ *
+ * Created on 03 February 2008, 19:47
+ */
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author  rich
+ * @author rich.midwinter
  */
 public class TranslatorFrame extends javax.swing.JFrame {
     
-    /** Creates new form TranslatorFrame */
+    /**
+	 * Serial version UID.
+	 */
+	private static final long serialVersionUID = 7916697355146649532L;
+	
+	/** Creates new form TranslatorFrame */
     public TranslatorFrame() {
         initComponents();
         setLocationRelativeTo(null);
@@ -31,8 +41,8 @@ public class TranslatorFrame extends javax.swing.JFrame {
     
     private void translate() {
         try {
-            String languageFrom = null;
-            String languageTo = null;
+            Language languageFrom = null;
+            Language languageTo = null;
             if (frenchToEnglishMenuItem.isSelected()) {
                 languageFrom = Language.FRENCH;
                 languageTo = Language.ENGLISH;
@@ -194,8 +204,7 @@ public class TranslatorFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea toTextArea;
-    // End of variables declaration
-    
+    // End of variables declaration   
 }
 }}}
 
