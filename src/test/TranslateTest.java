@@ -39,4 +39,11 @@ public class TranslateTest extends TestCase {
 		
 		assertEquals("Bonjour tout le monde", Translate.translate("Привет мир", Language.AUTO_DETECT, Language.FRENCH));
 	}
+	
+	@Test
+	public void testExample() throws Exception {
+		System.out.println("testExample");
+		
+		assertEquals("Hello world", Translate.translate("Bonjour le monde", Language.FRENCH, Language.ENGLISH));
+	}
 }
