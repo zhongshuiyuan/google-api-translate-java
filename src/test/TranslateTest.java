@@ -16,8 +16,22 @@ import com.google.api.translate.Translate;
  */
 public class TranslateTest extends TestCase {
 	@Test
+	public void testHttpReferrerRequired() throws Exception {
+		System.out.println("testHttpReferrerRequired");
+
+		try {
+			Translate.translate("Hello world", Language.ENGLISH, Language.ARABIC);
+			fail("Should have thrown an error as HTTP referrer is not set.");
+		} catch (Exception e) {
+			assertEquals("[google-api-translate-java] Referrer is not set. Call setHttpReferrer().", e.getMessage());
+		}
+	}
+	
+	@Test
 	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
+		
+		Translate.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		assertEquals("مرحبا العالم", Translate.translate("Hello world", Language.ENGLISH, Language.ARABIC));
 		assertEquals("世界您好", Translate.translate("Hello world", Language.ENGLISH, Language.CHINESE));
@@ -43,6 +57,8 @@ public class TranslateTest extends TestCase {
 	@Test
 	public void testExample() throws Exception {
 		System.out.println("testExample");
+		
+		Translate.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		assertEquals("Hello world", Translate.translate("Bonjour le monde", Language.FRENCH, Language.ENGLISH));
 	}

@@ -39,10 +39,19 @@ import com.tecnick.htmlutils.htmlentities.HTMLEntities;
  */
 public final class Translate {
 	
-    private static final String ENCODING = "UTF-8";
-    private static final String URL_STRING = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=";
-    private static final String TEXT_VAR = "&q=";
-    private static String referrer = "http://code.google.com/p/google-api-translate-java/";
+	/**
+	 * Constants.
+	 */
+    private static final String ENCODING = "UTF-8",
+    		URL_STRING = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=",
+    		TEXT_VAR = "&q=";
+    
+    /**
+     * The HTTP referrer attribute.
+     * 
+     * This allows Google to distinguish between programs.
+     */
+    private static String referrer;
     
     /**
      * Translate. Private constructor as we should not need to initialize it.
@@ -68,8 +77,13 @@ public final class Translate {
      * @throws Exception on error.
      */
     public static String translate(final String text, final Language from, final Language to) throws Exception {
+    	if (referrer == null || referrer.length() == 0) {
+    		throw new Exception("[google-api-translate-java] Referrer is not set. Call setHttpReferrer().");
+    	}
+    	
     	return retrieveTranslation(text, from, to);
     }
+    
     /**
      * Forms an HTTP request and parses the response for a translation.
      * 
