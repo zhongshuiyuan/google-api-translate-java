@@ -19,7 +19,6 @@
  */
 package com.google.api.translate;
 
-
 /**
  * Defines language information for the Google Translate API.
  *
@@ -85,6 +84,15 @@ public enum Language {
 	 */
 	private Language(final String pLanguage) {
 		language = pLanguage;
+	}
+	
+	public static Language fromString(final String pLanguage) {
+		for (Language l : values()) {
+			if (pLanguage.equals(l.toString())) {
+				return l;
+			}
+		}
+		return null;
 	}
 	
 	/**
