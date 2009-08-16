@@ -1,3 +1,23 @@
+/**
+ * TranslatorFrame.java
+ *
+ * Copyright (C) 2009,  Richard Midwinter
+ * 
+ * This file is part of google-api-translate-java.
+ *
+ * google-api-translate-java is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * google-api-translate-java is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with google-api-translate-java.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.google.api.translate;
 
 /*
@@ -8,11 +28,15 @@ package com.google.api.translate;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
+
+import com.google.api.Files;
 
 /**
  *
@@ -25,17 +49,27 @@ public class TranslatorFrame extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 7916697355146649532L;
 	
+	private static final String REFERRER_PATH = System.getProperty("user.home") +"/.gtReferrer";
+	
 	private Language languageFrom = Language.FRENCH;
 	private Language languageTo = Language.ENGLISH;
 	
 	/** Creates new form TranslatorFrame */
-    public TranslatorFrame() {
+    public TranslatorFrame() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
         
-        String referrer = (String) JOptionPane.showInputDialog(this,
-        		"Please enter the address of your website.\n(This is just to help Google identify how their translation tools are used).",
-        		"Website address", JOptionPane.OK_OPTION);
+        String referrer = null;
+        
+        final File ref = new File(REFERRER_PATH);
+        if (ref.exists()) {
+        	referrer = Files.read(ref).trim();
+        } else {
+	        referrer = (String) JOptionPane.showInputDialog(this,
+	        		"Please enter the address of your website.\n(This is just to help Google identify how their translation tools are used).",
+	        		"Website address", JOptionPane.OK_OPTION);
+	        Files.write(ref, referrer);
+        }
         
         if (referrer.length() > 0) {
         	Translate.setHttpReferrer(referrer);
@@ -201,7 +235,11 @@ public class TranslatorFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TranslatorFrame().setVisible(true);
+                try {
+					new TranslatorFrame().setVisible(true);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         });
     }
