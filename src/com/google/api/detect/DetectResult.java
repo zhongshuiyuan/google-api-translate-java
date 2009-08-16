@@ -26,6 +26,7 @@ import com.google.api.translate.Language;
  * Represents the result of a Detect query.
  * 
  * @author Richard Midwinter
+ * @author Soren AD <soren@tanesha.net>
  */
 public class DetectResult {
 
