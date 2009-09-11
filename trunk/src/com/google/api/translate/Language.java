@@ -28,8 +28,10 @@ package com.google.api.translate;
  */
 public enum Language {
 	AUTO_DETECT(""),
+	AFRIKAANS("af"),
 	ALBANIAN("sq"),
 	ARABIC("ar"),
+	BELARUSIAN("be"),
 	BULGARIAN("bg"),
 	CATALAN("ca"),
 	CHINESE("zh"),
@@ -51,11 +53,14 @@ public enum Language {
 	HINDI("hi"),
 	HUNGARIAN("hu"),
 	INDONESIAN("id"),
+	IRISH("ga"),
 	ITALIAN("it"),
 	JAPANESE("ja"),
 	KOREAN("ko"),
 	LATVIAN("lv"),
 	LITHUANIAN("lt"),
+	MACEDONIAN("mk"),
+	MALAY("ms"),
 	MALTESE("mt"),
 	NORWEGIAN("no"),
 	PERSIAN("fa"),
@@ -67,11 +72,14 @@ public enum Language {
 	SLOVAK("sk"),
 	SLOVENIAN("sl"),
 	SPANISH("es"),
+	SWAHILI("sw"),
 	SWEDISH("sv"),
 	THAI("th"),
 	TURKISH("tr"),
 	UKRANIAN("uk"),
-	VIETNAMESE("vi");
+	VIETNAMESE("vi"),
+	WELSH("cy"),
+	YIDDISH("yi");
 	
 	/**
 	 * Google's String representation of this language.
