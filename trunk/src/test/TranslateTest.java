@@ -94,14 +94,62 @@ public class TranslateTest extends TestCase {
 		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		final String[] results = Translate.execute("Hello world", Language.ENGLISH, new Language[] {
+			Language.AFRIKAANS,
+			Language.ALBANIAN,
+			Language.ARABIC,
+			Language.BELARUSIAN,
+			Language.CATALAN,
+			Language.CHINESE,
+			Language.CHINESE_SIMPLIFIED,
+			Language.CHINESE_TRADITIONAL,
+			Language.CROATIAN,
+			Language.CZECH,
+			Language.DANISH,
+			Language.DUTCH,
+			Language.ENGLISH,
+			Language.ESTONIAN,
+			Language.FILIPINO,
+			Language.FINNISH,
 			Language.FRENCH,
+			Language.GALACIAN,
+			Language.GERMAN,
+			Language.GREEK,
+			Language.HEBREW,
+			Language.HINDI,
+			Language.HUNGARIAN,
+			Language.INDONESIAN,
 			Language.IRISH,
-			Language.SPANISH
+			Language.ITALIAN,
+			Language.JAPANESE,
+			Language.KOREAN,
+			Language.LATVIAN,
+			Language.LITHUANIAN,
+			Language.MACEDONIAN,
+			Language.MALAY,
+			Language.MALTESE,
+			Language.NORWEGIAN,
+			Language.PERSIAN,
+			Language.POLISH,
+			Language.PORTUGUESE,
+			Language.ROMANIAN,
+			Language.RUSSIAN,
+			Language.SERBIAN,
+			Language.SLOVAK,
+			Language.SLOVENIAN,
+			Language.SPANISH,
+			Language.SWAHILI,
+			Language.SWEDISH,
+			Language.THAI,
+			Language.TURKISH,
+			Language.UKRANIAN,
+			Language.VIETNAMESE,
+			Language.WELSH,
+			Language.YIDDISH
 		});
 
-		assertEquals("Bonjour tout le monde", results[0]);
-		assertEquals("Dia duit domhan", results[1]);
-		assertEquals("¡Hola, mundo", results[2]);
+		assertEquals("Bonjour tout le monde", results[16]);
+		assertEquals("Dia duit domhan", results[24]);
+		assertEquals("¡Hola, mundo", results[42]);
 	}
 	
 	@Test

@@ -74,19 +74,21 @@ public final class Translate extends GoogleAPI {
      * @param text The array of Strings to translate.
      * @param from The language code to translate from.
      * @param to The language code to translate to.
-     * @return The translated String.
+     * @return The translated array of String results.
      * @throws Exception on error.
      */
     public static String[] execute(final String[] text, final Language from, final Language to) throws Exception {
     	validateReferrer();
     	
-    	final String[] responses = new String[text.length];
+    	final Language[] fromArgs = new Language[text.length];
+    	final Language[] toArgs = new Language[text.length];
     	
     	for (int i = 0; i<text.length; i++) {
-	    	responses[i] = execute(text[i], from, to);
+    		fromArgs[i] = from;
+    		toArgs[i] = to;
     	}
     	
-    	return responses;
+    	return execute(text, fromArgs, toArgs);
     }
 
     /**
@@ -95,28 +97,30 @@ public final class Translate extends GoogleAPI {
      * @param text The String to translate.
      * @param from The language code to translate from.
      * @param to The array of Languages to translate to.
-     * @return The translated String.
+     * @return The translated array of String results.
      * @throws Exception on error.
      */
     public static String[] execute(final String text, final Language from, final Language[] to) throws Exception {
     	validateReferrer();
     	
-    	final String[] responses = new String[to.length];
+    	final String[] textArgs = new String[to.length];
+    	final Language[] fromArgs = new Language[to.length];
     	
     	for (int i = 0; i<to.length; i++) {
-	    	responses[i] = execute(text, from, to[i]);
+    		textArgs[i] = text;
+    		fromArgs[i] = from;
     	}
     	
-    	return responses;
+    	return execute(textArgs, fromArgs, to);
     }
 
     /**
      * Translates text from a given language to another given language using Google Translate.
      * 
-     * @param text The String to translate.
-     * @param from The language code to translate from.
-     * @param to The language code to translate to.
-     * @return The translated String.
+     * @param text The array of Strings to translate.
+     * @param from The array of Language codes to translate from.
+     * @param to The array of Language codes to translate to.
+     * @return The translated array of String results.
      * @throws Exception on error.
      */
     public static String[] execute(final String[] text, final Language from[], final Language[] to) throws Exception {
@@ -149,9 +153,7 @@ public final class Translate extends GoogleAPI {
     	
     	final URL url = new URL(urlBuilder.toString());
     	
-    	final JSONObject root = retrieveJSON(url);
-    	
-    	final JSONArray json = root.getJSONArray("responseData");
+    	final JSONArray json = retrieveJSON(url).getJSONArray("responseData");
     	
     	for (int i = 0; i<json.length(); i++) {
     		final JSONObject obj = json.getJSONObject(i);
