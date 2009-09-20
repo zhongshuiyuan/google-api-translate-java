@@ -73,6 +73,75 @@ public class TranslateTest extends TestCase {
 	}
 	
 	@Test
+	public void testTranslateMultipleTexts() throws Exception {
+		System.out.println("testTranslateMultipleTexts");
+		
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		
+		final String[] results = Translate.execute(new String[] {
+			"Hello world",
+			"See you soon"
+		}, Language.ENGLISH, Language.FRENCH);
+		
+		assertEquals("Bonjour tout le monde", results[0]);
+		assertEquals("À bientôt", results[1]);
+	}
+	
+	@Test
+	public void testTranslateMultipleLanguages() throws Exception {
+		System.out.println("testTranslateMultipleLanguages");
+		
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		
+		final String[] results = Translate.execute("Hello world", Language.ENGLISH, new Language[] {
+			Language.FRENCH,
+			Language.IRISH,
+			Language.SPANISH
+		});
+
+		assertEquals("Bonjour tout le monde", results[0]);
+		assertEquals("Dia duit domhan", results[1]);
+		assertEquals("¡Hola, mundo", results[2]);
+	}
+	
+	@Test
+	public void testTranslateMultipleTextsAndLanguagesSingleEntry() throws Exception {
+		System.out.println("testTranslateMultipleTextsAndLanguagesSingleEntry");
+		
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		
+		final String[] results = Translate.execute(new String[] {
+			"Hello world"
+		}, new Language[] {
+			Language.ENGLISH
+		}, new Language[] {
+			Language.FRENCH
+		});
+		
+		assertEquals("Bonjour tout le monde", results[0]);
+	}
+	
+	@Test
+	public void testTranslateMultipleTextsAndLanguages() throws Exception {
+		System.out.println("testTranslateMultipleTextsAndLanguages");
+		
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		
+		final String[] results = Translate.execute(new String[] {
+			"Hello world",
+			"Hello world"
+		}, new Language[] {
+			Language.ENGLISH,
+			Language.ENGLISH
+		}, new Language[] {
+			Language.FRENCH,
+			Language.SPANISH
+		});
+		
+		assertEquals("Bonjour tout le monde", results[0]);
+	}
+	
+	@Test
 	public void testExample() throws Exception {
 		System.out.println("testExample");
 		
