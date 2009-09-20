@@ -53,7 +53,7 @@ public class Detect extends GoogleAPI {
     	
 		final URL url = new URL(URL +URLEncoder.encode(text, ENCODING));
 		
-		final JSONObject json = retrieveJSON(url, text);
+		final JSONObject json = retrieveJSON(url);
 		
 		return new DetectResult(
 				Language.fromString(json.getJSONObject("responseData").getString("language")),

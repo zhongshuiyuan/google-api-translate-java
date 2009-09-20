@@ -23,8 +23,10 @@ package com.google.api;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import org.json.JSONObject;
 
@@ -62,17 +64,19 @@ public abstract class GoogleAPI {
      * Forms an HTTP request and returns the result of the request as a JSONObject.
      * 
      * @param url The URL to query for a JSONObject.
-     * @param text The String to translate.
      * @return The translated String.
      * @throws Exception on error.
      */
-    protected static JSONObject retrieveJSON(final URL url,final String text) throws Exception {
+    protected static JSONObject retrieveJSON(final URL url) throws Exception {
     	try {
     		final HttpURLConnection uc = (HttpURLConnection) url.openConnection();
     		uc.setRequestProperty("referer", referrer);
+    		uc.setDoOutput(true);
+
+			final PrintWriter pw = new PrintWriter(uc.getOutputStream());
     		
     		try {
-    			String result = inputStreamToString(uc.getInputStream());
+    			final String result = inputStreamToString(uc.getInputStream());
     			
     			return new JSONObject(result);
     		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
@@ -80,6 +84,7 @@ public abstract class GoogleAPI {
     			if (uc.getErrorStream() != null) {
     				uc.getErrorStream().close();
     			}
+    			pw.close();
     		}
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);
