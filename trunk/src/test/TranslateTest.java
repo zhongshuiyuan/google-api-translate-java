@@ -73,6 +73,15 @@ public class TranslateTest extends TestCase {
 	}
 	
 	@Test
+	public void testUnHtmlEntities() throws Exception {
+		System.out.println("testUnHtmlEntities");
+		
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		
+		assertEquals("מק\"ט", Translate.execute("ID", Language.ENGLISH, Language.HEBREW));
+	}
+	
+	@Test
 	public void testTranslateMultipleTexts() throws Exception {
 		System.out.println("testTranslateMultipleTexts");
 		
@@ -148,7 +157,7 @@ public class TranslateTest extends TestCase {
 		});
 
 		assertEquals("Bonjour tout le monde", results[16]);
-		assertEquals("Dia duit domhan", results[24]);
+		assertEquals("Hello domhan", results[24]);
 		assertEquals("¡Hola, mundo", results[42]);
 	}
 	

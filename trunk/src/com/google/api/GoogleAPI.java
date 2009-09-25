@@ -112,6 +112,7 @@ public abstract class GoogleAPI {
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error reading translation stream.", ex);
     	}
+    	
     	return outputBuilder.toString();
     }
 }
