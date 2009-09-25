@@ -196,6 +196,7 @@ public class HTMLEntities {
 		{ new String("&prop;"), new Integer(8733) },
 		{ new String("&Psi;"), new Integer(936) },
 		{ new String("&psi;"), new Integer(968) },
+		{ new String("&quot;"), new Integer(34) },
 		{ new String("&radic;"), new Integer(8730) },
 		{ new String("&rang;"), new Integer(9002) },
 		{ new String("&raquo;"), new Integer(187) },
