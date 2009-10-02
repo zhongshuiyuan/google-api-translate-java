@@ -32,9 +32,17 @@ import com.google.api.translate.Translate;
  * @author Richard Midwinter
  */
 public class TranslateTest extends TestCase {
+	
+	@Override
+	public void setUp() {
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+	}
+	
 	@Test
 	public void testHttpReferrerRequired() throws Exception {
 		System.out.println("testHttpReferrerRequired");
+
+		GoogleAPI.setHttpReferrer(null);
 
 		try {
 			Translate.execute("Hello world", Language.ENGLISH, Language.ARABIC);
@@ -47,8 +55,6 @@ public class TranslateTest extends TestCase {
 	@Test
 	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		assertEquals("مرحبا العالم", Translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
 		assertEquals("世界您好", Translate.execute("Hello world", Language.ENGLISH, Language.CHINESE));
@@ -76,16 +82,12 @@ public class TranslateTest extends TestCase {
 	public void testUnHtmlEntities() throws Exception {
 		System.out.println("testUnHtmlEntities");
 		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
-		
 		assertEquals("מק\"ט", Translate.execute("ID", Language.ENGLISH, Language.HEBREW));
 	}
 	
 	@Test
 	public void testTranslateMultipleTexts() throws Exception {
 		System.out.println("testTranslateMultipleTexts");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		final String[] results = Translate.execute(new String[] {
 			"Hello world",
@@ -99,8 +101,6 @@ public class TranslateTest extends TestCase {
 	@Test
 	public void testTranslateMultipleLanguages() throws Exception {
 		System.out.println("testTranslateMultipleLanguages");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		final String[] results = Translate.execute("Hello world", Language.ENGLISH, new Language[] {
 			Language.AFRIKAANS,
@@ -157,15 +157,13 @@ public class TranslateTest extends TestCase {
 		});
 
 		assertEquals("Bonjour tout le monde", results[16]);
-		assertEquals("Hello domhan", results[24]);
+		assertEquals("Dia duit domhan", results[24]);
 		assertEquals("¡Hola, mundo", results[42]);
 	}
 	
 	@Test
 	public void testTranslateMultipleTextsAndLanguagesSingleEntry() throws Exception {
 		System.out.println("testTranslateMultipleTextsAndLanguagesSingleEntry");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		final String[] results = Translate.execute(new String[] {
 			"Hello world"
@@ -181,8 +179,6 @@ public class TranslateTest extends TestCase {
 	@Test
 	public void testTranslateMultipleTextsAndLanguages() throws Exception {
 		System.out.println("testTranslateMultipleTextsAndLanguages");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		final String[] results = Translate.execute(new String[] {
 			"Hello world",
@@ -201,8 +197,6 @@ public class TranslateTest extends TestCase {
 	@Test
 	public void testExample() throws Exception {
 		System.out.println("testExample");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		assertEquals("Hello World", Translate.execute("Bonjour le monde", Language.FRENCH, Language.ENGLISH));
 	}
