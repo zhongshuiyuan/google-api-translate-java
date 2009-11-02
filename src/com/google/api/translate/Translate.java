@@ -36,6 +36,7 @@ import com.tecnick.htmlutils.htmlentities.HTMLEntities;
  * @author Mike Nereson
  * @author Emeric Vernat
  * @author Juan B Cabral
+ * @author Kramar Tomas
  */
 public final class Translate extends GoogleAPI {
 	
@@ -46,7 +47,8 @@ public final class Translate extends GoogleAPI {
     		LANG_PARAM = "&langpair=",
     		TEXT_PARAM = "&q=",
     		PIPE_PARAM = "%7C",
-    		URL = "http://ajax.googleapis.com/ajax/services/language/translate?v=1.0&langpair=#FROM#%7C#TO#&q=";
+    		URL = "http://ajax.googleapis.com/ajax/services/language/translate",
+    		PARAMETERS = "v=1.0&langpair=#FROM#%7C#TO#&q=";
 
     /**
      * Translates text from a given language to another given language using Google Translate.
@@ -60,10 +62,11 @@ public final class Translate extends GoogleAPI {
     public static String execute(final String text, final Language from, final Language to) throws Exception {
     	validateReferrer();
     	
-    	final URL url = new URL(URL.replaceAll("#FROM#", from.toString()).replaceAll("#TO#", to.toString())
-    			+URLEncoder.encode(text, ENCODING));
+    	final URL url = new URL(URL);
+    	final String parameters = PARAMETERS.replaceAll("#FROM#", from.toString()).replaceAll("#TO#", to.toString())
+    			+URLEncoder.encode(text, ENCODING);
     	
-    	final JSONObject json = retrieveJSON(url);
+    	final JSONObject json = retrieveJSON(url, parameters);
     	
     	return getJSONResponse(json);
     }
@@ -137,23 +140,23 @@ public final class Translate extends GoogleAPI {
     	
     	final String[] responses = new String[text.length];
     	
-    	final StringBuilder urlBuilder = new StringBuilder();
+    	final StringBuilder parametersBuilder = new StringBuilder();
     	
-    	urlBuilder.append(URL.replaceAll("#FROM#", from[0].toString()).replaceAll("#TO#", to[0].toString()));
-    	urlBuilder.append(URLEncoder.encode(text[0], ENCODING));
+    	parametersBuilder.append(PARAMETERS.replaceAll("#FROM#", from[0].toString()).replaceAll("#TO#", to[0].toString()));
+    	parametersBuilder.append(URLEncoder.encode(text[0], ENCODING));
     	
     	for (int i = 1; i<text.length; i++) {
-    		urlBuilder.append(LANG_PARAM);
-    		urlBuilder.append(from[i].toString());
-    		urlBuilder.append(PIPE_PARAM);
-    		urlBuilder.append(to[i].toString());
-    		urlBuilder.append(TEXT_PARAM);
-    		urlBuilder.append(URLEncoder.encode(text[i].toString(), ENCODING));
+    		parametersBuilder.append(LANG_PARAM);
+    		parametersBuilder.append(from[i].toString());
+    		parametersBuilder.append(PIPE_PARAM);
+    		parametersBuilder.append(to[i].toString());
+    		parametersBuilder.append(TEXT_PARAM);
+    		parametersBuilder.append(URLEncoder.encode(text[i].toString(), ENCODING));
     	}
     	
-    	final URL url = new URL(urlBuilder.toString());
+    	final URL url = new URL(URL);
     	
-    	final JSONArray json = retrieveJSON(url).getJSONArray("responseData");
+    	final JSONArray json = retrieveJSON(url, parametersBuilder.toString()).getJSONArray("responseData");
     	
     	for (int i = 0; i<json.length(); i++) {
     		final JSONObject obj = json.getJSONObject(i);
