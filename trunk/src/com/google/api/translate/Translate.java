@@ -51,7 +51,7 @@ public final class Translate extends GoogleAPI {
     		PARAMETERS = "v=1.0&langpair=#FROM#%7C#TO#&q=";
 
     /**
-     * Translates text from a given language to another given language using Google Translate.
+     * Translates text from a given Language to another given Language using Google Translate.
      * 
      * @param text The String to translate.
      * @param from The language code to translate from.
@@ -72,7 +72,7 @@ public final class Translate extends GoogleAPI {
     }
 
     /**
-     * Translates an array of text Strings from a given language to another given language using Google Translate.
+     * Translates an array of text Strings from a given Language to another given Language using Google Translate.
      * 
      * @param text The array of Strings to translate.
      * @param from The language code to translate from.
@@ -95,7 +95,7 @@ public final class Translate extends GoogleAPI {
     }
 
     /**
-     * Translates an array of text Strings from a given language to another given language using Google Translate.
+     * Translates a String from a given Language to an Array of Languages using Google Translate.
      * 
      * @param text The String to translate.
      * @param from The language code to translate from.
@@ -118,7 +118,7 @@ public final class Translate extends GoogleAPI {
     }
 
     /**
-     * Translates text from a given language to another given language using Google Translate.
+     * Translates text from a given Language to another given Language using Google Translate.
      * 
      * @param text The array of Strings to translate.
      * @param from The array of Language codes to translate from.
