@@ -71,9 +71,8 @@ public abstract class GoogleAPI {
     	try {
     		final HttpURLConnection uc = (HttpURLConnection) url.openConnection();
     		uc.setRequestProperty("referer", referrer);
+    		uc.setRequestMethod("GET");
     		uc.setDoOutput(true);
-
-			final PrintWriter pw = new PrintWriter(uc.getOutputStream());
     		
     		try {
     			final String result = inputStreamToString(uc.getInputStream());
@@ -84,7 +83,6 @@ public abstract class GoogleAPI {
     			if (uc.getErrorStream() != null) {
     				uc.getErrorStream().close();
     			}
-    			pw.close();
     		}
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);
