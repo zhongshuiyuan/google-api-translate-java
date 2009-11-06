@@ -1,0 +1,10 @@
+#summary Returning a more complex object from Translate API calls.
+
+= Introduction =
+
+It looks increasingly likely that the API will have to return a custom object as the translation result. This will lose the simplicity of returning a String[] but provided added functionality as detailed below.
+
+= Reasons for =
+
+  * Issue 75 - Returning the detected language as part of using AUTO_DETECT
+  * Issue 76 - Translating multiple Strings from a single Language to multiple Languages
