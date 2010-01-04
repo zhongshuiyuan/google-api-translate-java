@@ -56,7 +56,7 @@ public enum Language {
 	FILIPINO("tl"),
 	FINNISH("fi"),
 	FRENCH("fr"),
-	GALACIAN("gl"),
+	GALICIAN("gl"),
 	GEORGIAN("ka"),
 	GERMAN("de"),
 	GREEK("el"),
