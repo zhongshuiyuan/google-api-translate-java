@@ -20,6 +20,8 @@
  */
 package test;
 
+import java.util.Locale;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -120,7 +122,7 @@ public class TranslateTest extends TestCase {
 			Language.FILIPINO,
 			Language.FINNISH,
 			Language.FRENCH,
-			Language.GALACIAN,
+			Language.GALICIAN,
 			Language.GERMAN,
 			Language.GREEK,
 			Language.HEBREW,
